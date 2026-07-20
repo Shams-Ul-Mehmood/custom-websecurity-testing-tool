@@ -38,6 +38,12 @@ custom_websecurity_testing_tool/
 ├── utils/
 │   ├── http_client.py       # Shared HTTP wrapper (timeout/proxy/headers)
 │   ├── report.py            # JSON/HTML report generation
+|   ├── api_discovery.py
+|   ├── cors_misconfig.py
+│   ├── jwt_detection.py
+│   ├── mock_bonus_server.py
+│   ├── mock_echo_server.py
+│   ├── session_auth.py    
 │   └── logger.py            # Colored console output
 ├── reports/                  # Generated reports land here
 ├── config.example.yaml       # Example config file
