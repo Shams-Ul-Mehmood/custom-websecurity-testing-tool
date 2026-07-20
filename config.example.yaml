@@ -1,0 +1,14 @@
+# Example configuration file for the Web Security Testing Framework.
+# Copy to config.yaml and customize, then run with: --config config.yaml
+# CLI flags always override values set here.
+
+timeout: 10
+user_agent: "WebSecFramework/1.0 (+authorized-security-testing)"
+verify_ssl: true
+
+# proxy: "http://127.0.0.1:8080"   # e.g. route traffic through Burp Suite
+
+cookies: ""   # "session=abc123; role=user"
+
+headers:
+  X-Test-Header: "framework-scan"
