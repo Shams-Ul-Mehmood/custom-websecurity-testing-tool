@@ -27,8 +27,8 @@ vulnerable applications**, and produces professional HTML/JSON reports.
 ## Project Structure
 
 ```
-framework/
-├── framework.py            # CLI entry point
+custom_websecurity_testing_tool/
+├── custom_websecurity_testing_tool.py            # CLI entry point
 ├── modules/
 │   ├── headers.py          # Module 1 - Security Headers Analyzer
 │   ├── auth.py              # Module 2 - Authentication Assessment
@@ -49,16 +49,16 @@ framework/
 
 ```bash
 git clone <your-repo-url>
-cd framework
+cd custom_websecurity_testing_tool
 pip install -r requirements.txt
 ```
 
 ## Usage
 
 ```bash
-python framework.py --target http://testphp.vulnweb.com --module headers
-python framework.py --target http://demo.testfire.net --module all --output html
-python framework.py --target http://testphp.vulnweb.com --module xss,sqli --threads 3
+python custom_websecurity_testing_tool.py --target http://testphp.vulnweb.com --module headers
+python custom_websecurity_testing_tool.py --target http://demo.testfire.net --module all --output html
+python custom_websecurity_testing_tool.py --target http://testphp.vulnweb.com --module xss,sqli --threads 3
 ```
 
 ### CLI Options
@@ -83,7 +83,7 @@ python framework.py --target http://testphp.vulnweb.com --module xss,sqli --thre
 ### Example: full scan with a Burp proxy and custom UA
 
 ```bash
-python framework.py --target http://demo.testfire.net \
+python custom_websecurity_testing_tool.py --target http://demo.testfire.net \
   --module all --threads 3 \
   --proxy http://127.0.0.1:8080 \
   --user-agent "InternshipScanner/1.0" \
