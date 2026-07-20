@@ -1,0 +1,19 @@
+{
+  "target": "http://testphp.vulnweb.com",
+  "scan_date": "2026-07-15T15:09:31",
+  "modules_executed": [
+    "headers"
+  ],
+  "total_findings": 1,
+  "overall_risk_rating": "INFORMATIONAL",
+  "risk_score": 0,
+  "findings": [
+    {
+      "title": "Target unreachable for header analysis",
+      "severity": "INFO",
+      "evidence": "HTTPConnectionPool(host='testphp.vulnweb.com', port=80): Max retries exceeded with url: / (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x0000019326EAC3B0>, 'Connection to testphp.vulnweb.com timed out. (connect timeout=10)'))",
+      "recommendation": "Verify the target URL is reachable and try again.",
+      "module": "headers"
+    }
+  ]
+}

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Web Security Report - http://testphp.vulnweb.com</title>
+<style>
+  body { font-family: 'Segoe UI', Arial, sans-serif; background:#0f1117; color:#e6e6e6; margin:0; padding:0; }
+  .container { max-width: 1100px; margin: 0 auto; padding: 30px; }
+  h1 { font-size: 24px; margin-bottom: 4px; }
+  .subtitle { color:#9aa0a6; margin-bottom: 24px; }
+  .summary-grid { display:grid; grid-template-columns: repeat(4, 1fr); gap:14px; margin-bottom:30px; }
+  .card { background:#171a23; border:1px solid #262b38; border-radius:10px; padding:16px; }
+  .card h3 { margin:0 0 6px 0; font-size:13px; color:#9aa0a6; text-transform:uppercase; letter-spacing:.05em; }
+  .card .value { font-size:22px; font-weight:700; }
+  table { width:100%; border-collapse: collapse; background:#171a23; border-radius:10px; overflow:hidden; }
+  th, td { padding:12px 14px; text-align:left; border-bottom:1px solid #262b38; font-size:14px; vertical-align:top; }
+  th { background:#1e2230; color:#9aa0a6; text-transform:uppercase; font-size:12px; letter-spacing:.04em; }
+  tr:last-child td { border-bottom:none; }
+  .badge { color:white; padding:3px 10px; border-radius:20px; font-size:11px; font-weight:700; }
+  .mono { font-family: Consolas, monospace; font-size:12px; color:#c8ccd4; max-width:280px; word-break:break-word; }
+  .none { text-align:center; color:#9aa0a6; padding:24px; }
+  footer { margin-top:24px; color:#666; font-size:12px; text-align:center; }
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>Web Security Testing Report</h1>
+  <div class="subtitle">Target: http://testphp.vulnweb.com &nbsp;|&nbsp; Scan Date: 2026-07-15T09:27:00</div>
+
+  <div class="summary-grid">
+    <div class="card"><h3>Modules Executed</h3><div class="value">headers, auth, xss, sqli, disclosure</div></div>
+    <div class="card"><h3>Total Findings</h3><div class="value">10</div></div>
+    <div class="card"><h3>Risk Score</h3><div class="value">89/100</div></div>
+    <div class="card"><h3>Overall Risk Rating</h3><div class="value" style="color:#7d12c9">CRITICAL</div></div>
+  </div>
+
+  <table>
+    <thead>
+      <tr><th>Severity</th><th>Finding</th><th>Module</th><th>Evidence</th><th>Remediation</th></tr>
+    </thead>
+    <tbody>
+      
+                <tr>
+                    <td><span class="badge" style="background:#d9363e">HIGH</span></td>
+                    <td>Missing security header: Content-Security-Policy</td>
+                    <td>headers</td>
+                    <td class="mono">Header 'Content-Security-Policy' not found in response from http://testphp.vulnweb.com</td>
+                    <td>Define a strict Content-Security-Policy to mitigate XSS and data-injection attacks (e.g. default-src 'self').</td>
+                </tr>
+                <tr>
+                    <td><span class="badge" style="background:#d9363e">HIGH</span></td>
+                    <td>Missing security header: Strict-Transport-Security</td>
+                    <td>headers</td>
+                    <td class="mono">Header 'Strict-Transport-Security' not found in response from http://testphp.vulnweb.com</td>
+                    <td>Enable HSTS ('Strict-Transport-Security: max-age=31536000; includeSubDomains') to enforce HTTPS.</td>
+                </tr>
+                <tr>
+                    <td><span class="badge" style="background:#e2a63b">MEDIUM</span></td>
+                    <td>Missing security header: X-Frame-Options</td>
+                    <td>headers</td>
+                    <td class="mono">Header 'X-Frame-Options' not found in response from http://testphp.vulnweb.com</td>
+                    <td>Set 'X-Frame-Options: DENY' or 'SAMEORIGIN' to prevent clickjacking.</td>
+                </tr>
+                <tr>
+                    <td><span class="badge" style="background:#e2a63b">MEDIUM</span></td>
+                    <td>No account lockout detected after repeated failed logins</td>
+                    <td>auth</td>
+                    <td class="mono">4 failed login attempts returned status 403 with no lockout indication.</td>
+                    <td>Implement account lockout, CAPTCHA, or progressive delays after repeated failed login attempts to mitigate brute-force attacks.</td>
+                </tr>
+                <tr>
+                    <td><span class="badge" style="background:#2f9e44">LOW</span></td>
+                    <td>Missing security header: X-Content-Type-Options</td>
+                    <td>headers</td>
+                    <td class="mono">Header 'X-Content-Type-Options' not found in response from http://testphp.vulnweb.com</td>
+                    <td>Set 'X-Content-Type-Options: nosniff' to stop MIME-type sniffing.</td>
+                </tr>
+                <tr>
+                    <td><span class="badge" style="background:#2f9e44">LOW</span></td>
+                    <td>Missing security header: Referrer-Policy</td>
+                    <td>headers</td>
+                    <td class="mono">Header 'Referrer-Policy' not found in response from http://testphp.vulnweb.com</td>
+                    <td>Set a Referrer-Policy (e.g. 'strict-origin-when-cross-origin') to limit referrer leakage.</td>
+                </tr>
+                <tr>
+                    <td><span class="badge" style="background:#2f9e44">LOW</span></td>
+                    <td>Missing security header: Permissions-Policy</td>
+                    <td>headers</td>
+                    <td class="mono">Header 'Permissions-Policy' not found in response from http://testphp.vulnweb.com</td>
+                    <td>Define a Permissions-Policy to restrict access to browser features (camera, geolocation, etc.).</td>
+                </tr>
+                <tr>
+                    <td><span class="badge" style="background:#495057">INFO</span></td>
+                    <td>No SQL injection indicators detected</td>
+                    <td>sqli</td>
+                    <td class="mono">Tested 1 parameter(s) with error/boolean-based payloads; no anomalies observed.</td>
+                    <td>No action required. Continue using parameterized queries.</td>
+                </tr>
+                <tr>
+                    <td><span class="badge" style="background:#495057">INFO</span></td>
+                    <td>No reflected XSS detected</td>
+                    <td>xss</td>
+                    <td class="mono">12 GET/POST parameter+payload combinations tested with no unencoded reflection.</td>
+                    <td>No action required. Continue to validate/encode all user input on output.</td>
+                </tr>
+                <tr>
+                    <td><span class="badge" style="background:#495057">INFO</span></td>
+                    <td>No common information disclosure issues detected</td>
+                    <td>disclosure</td>
+                    <td class="mono">12 known-sensitive paths tested; none returned exposed content.</td>
+                    <td>No action required.</td>
+                </tr>
+    </tbody>
+  </table>
+
+  <footer>Generated by Custom Web Security Testing Framework &mdash; for authorized security testing only.</footer>
+</div>
+</body>
+</html>

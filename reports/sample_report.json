@@ -1,0 +1,86 @@
+{
+  "target": "http://testphp.vulnweb.com",
+  "scan_date": "2026-07-15T09:27:00",
+  "modules_executed": [
+    "headers",
+    "auth",
+    "xss",
+    "sqli",
+    "disclosure"
+  ],
+  "total_findings": 10,
+  "overall_risk_rating": "CRITICAL",
+  "risk_score": 89,
+  "findings": [
+    {
+      "title": "Missing security header: Content-Security-Policy",
+      "severity": "HIGH",
+      "evidence": "Header 'Content-Security-Policy' not found in response from http://testphp.vulnweb.com",
+      "recommendation": "Define a strict Content-Security-Policy to mitigate XSS and data-injection attacks (e.g. default-src 'self').",
+      "module": "headers"
+    },
+    {
+      "title": "Missing security header: Strict-Transport-Security",
+      "severity": "HIGH",
+      "evidence": "Header 'Strict-Transport-Security' not found in response from http://testphp.vulnweb.com",
+      "recommendation": "Enable HSTS ('Strict-Transport-Security: max-age=31536000; includeSubDomains') to enforce HTTPS.",
+      "module": "headers"
+    },
+    {
+      "title": "Missing security header: X-Frame-Options",
+      "severity": "MEDIUM",
+      "evidence": "Header 'X-Frame-Options' not found in response from http://testphp.vulnweb.com",
+      "recommendation": "Set 'X-Frame-Options: DENY' or 'SAMEORIGIN' to prevent clickjacking.",
+      "module": "headers"
+    },
+    {
+      "title": "No account lockout detected after repeated failed logins",
+      "severity": "MEDIUM",
+      "evidence": "4 failed login attempts returned status 403 with no lockout indication.",
+      "recommendation": "Implement account lockout, CAPTCHA, or progressive delays after repeated failed login attempts to mitigate brute-force attacks.",
+      "module": "auth"
+    },
+    {
+      "title": "Missing security header: X-Content-Type-Options",
+      "severity": "LOW",
+      "evidence": "Header 'X-Content-Type-Options' not found in response from http://testphp.vulnweb.com",
+      "recommendation": "Set 'X-Content-Type-Options: nosniff' to stop MIME-type sniffing.",
+      "module": "headers"
+    },
+    {
+      "title": "Missing security header: Referrer-Policy",
+      "severity": "LOW",
+      "evidence": "Header 'Referrer-Policy' not found in response from http://testphp.vulnweb.com",
+      "recommendation": "Set a Referrer-Policy (e.g. 'strict-origin-when-cross-origin') to limit referrer leakage.",
+      "module": "headers"
+    },
+    {
+      "title": "Missing security header: Permissions-Policy",
+      "severity": "LOW",
+      "evidence": "Header 'Permissions-Policy' not found in response from http://testphp.vulnweb.com",
+      "recommendation": "Define a Permissions-Policy to restrict access to browser features (camera, geolocation, etc.).",
+      "module": "headers"
+    },
+    {
+      "title": "No SQL injection indicators detected",
+      "severity": "INFO",
+      "evidence": "Tested 1 parameter(s) with error/boolean-based payloads; no anomalies observed.",
+      "recommendation": "No action required. Continue using parameterized queries.",
+      "module": "sqli"
+    },
+    {
+      "title": "No reflected XSS detected",
+      "severity": "INFO",
+      "evidence": "12 GET/POST parameter+payload combinations tested with no unencoded reflection.",
+      "recommendation": "No action required. Continue to validate/encode all user input on output.",
+      "module": "xss"
+    },
+    {
+      "title": "No common information disclosure issues detected",
+      "severity": "INFO",
+      "evidence": "12 known-sensitive paths tested; none returned exposed content.",
+      "recommendation": "No action required.",
+      "module": "disclosure"
+    }
+  ]
+}
